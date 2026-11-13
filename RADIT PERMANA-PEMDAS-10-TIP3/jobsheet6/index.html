@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TokDit - Belanja Online</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <div class="logo">TokDit</div>
+
+        <nav>
+            <a href="#beranda">Beranda</a>
+            <a href="#produk">Produk</a>
+            <a href="#tentang">Tentang</a>
+        </nav>
+
+        <div class="search-box">
+            <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Cari produk..."
+            >
+            <button onclick="cariProduk()">Cari</button>
+        </div>
+
+        <button class="cart-button" onclick="bukaKeranjang()">
+            🛒 Keranjang
+            <span id="cartCount">0</span>
+        </button>
+    </header>
+
+
+    <!-- HERO -->
+    <section class="hero" id="beranda">
+        <div class="hero-content">
+            <h1>Belanja Online Lebih Mudah!</h1>
+            <p>Temukan berbagai produk menarik dengan harga terjangkau.</p>
+            <a href="#produk">
+                <button>Belanja Sekarang</button>
+            </a>
+        </div>
+    </section>
+
+
+    <!-- PRODUK -->
+    <section class="products" id="produk">
+
+        <h2>Produk Terbaru</h2>
+
+        <div class="product-container" id="productList">
+
+            <!-- Produk 1 -->
+            <div class="product-card" data-name="Kaos Oversize">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80">
+
+                <h3>Kaos Oversize</h3>
+                <p class="price">Rp75.000</p>
+
+                <button onclick="tambahKeranjang('Kaos Oversize', 75000)">
+                    Tambah ke Keranjang
+                </button>
+            </div>
+
+
+            <!-- Produk 2 -->
+            <div class="product-card" data-name="Sepatu Sneakers">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80">
+
+                <h3>Sepatu Sneakers</h3>
+                <p class="price">Rp150.000</p>
+
+                <button onclick="tambahKeranjang('Sepatu Sneakers', 150000)">
+                    Tambah ke Keranjang
+                </button>
+            </div>
+
+
+            <!-- Produk 3 -->
+            <div class="product-card" data-name="Tas Ransel">
+                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80">
+
+                <h3>Tas Ransel</h3>
+                <p class="price">Rp120.000</p>
+
+                <button onclick="tambahKeranjang('Tas Ransel', 120000)">
+                    Tambah ke Keranjang
+                </button>
+            </div>
+
+
+            <!-- Produk 4 -->
+            <div class="product-card" data-name="Headphone">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80">
+
+                <h3>Headphone</h3>
+                <p class="price">Rp100.000</p>
+
+                <button onclick="tambahKeranjang('Headphone', 100000)">
+                    Tambah ke Keranjang
+                </button>
+            </div>
+
+
+            <!-- Produk 5 -->
+            <div class="product-card" data-name="Jam Tangan">
+                <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=600&q=80">
+
+                <h3>Jam Tangan</h3>
+                <p class="price">Rp200.000</p>
+
+                <button onclick="tambahKeranjang('Jam Tangan', 200000)">
+                    Tambah ke Keranjang
+                </button>
+            </div>
+
+
+            <!-- Produk 6 -->
+            <div class="product-card" data-name="Kacamata">
+                <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80">
+
+                <h3>Kacamata</h3>
+                <p class="price">Rp85.000</p>
+
+                <button onclick="tambahKeranjang('Kacamata', 85000)">
+                    Tambah ke Keranjang
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TENTANG -->
+    <section class="about" id="tentang">
+        <h2>Tentang TokDit</h2>
+
+        <p>
+            TokDit adalah website toko online sederhana yang menyediakan
+            berbagai kebutuhan fashion dan aksesoris.
+        </p>
+    </section>
+
+
+    <!-- KERANJANG -->
+    <div class="cart-modal" id="cartModal">
+
+        <div class="cart-box">
+
+            <div class="cart-header">
+                <h2>Keranjang Belanja</h2>
+
+                <button onclick="tutupKeranjang()">✕</button>
+            </div>
+
+            <div id="cartItems">
+                <p>Keranjang masih kosong.</p>
+            </div>
+
+            <div class="cart-footer">
+
+    <h3>
+        Total:
+        <span id="cartTotal">Rp0</span>
+    </h3>
+
+    <h3 class="payment-title">Metode Pembayaran</h3>
+
+    <div class="payment-method">
+
+        <label>
+            <input type="radio" name="payment" value="Transfer Bank">
+            🏦 Transfer Bank
+        </label>
+
+        <label>
+            <input type="radio" name="payment" value="E-Wallet">
+            📱 E-Wallet
+        </label>
+
+        <label>
+            <input type="radio" name="payment" value="COD">
+            🚚 COD (Bayar di Tempat)
+        </label>
+
+    </div>
+
+    <button onclick="checkout()" class="checkout">
+        Bayar Sekarang
+    </button>
+
+</div>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 TokoKu. Semua Hak Dilindungi.</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
